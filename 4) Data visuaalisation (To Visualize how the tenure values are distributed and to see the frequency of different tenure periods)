@@ -1,0 +1,47 @@
+def plot_histogram (df,column_name):
+    plt.figure(figsize=(5,3))
+    ax=sns.histplot(df[column_name],kde=True)
+    
+    plt.title(f"Distribution of {column_name}")
+
+    col_mean=df[column_name].mean()
+    col_median=df[column_name].median()
+
+    plt.axvline(col_mean, color="red",linestyle="--",label="Mean")
+    plt.axvline(col_median, color="green",linestyle="--",label="Median")
+    plt.annotate(f'Median: {col_median:.2f}', 
+                xy=(col_median, ax.get_ylim()[1]*0.9),
+                xytext=(col_median+0.5, ax.get_ylim()[1]*0.9),
+                arrowprops=dict(facecolor='black', shrink=0.05, width=0.1),
+                fontsize=8)
+    plt.legend()
+    plt.show()
+
+plot_histogram(df,"tenure")
+
+
+
+def plot_boxplot(df, column_name):
+    plt.figure(figsize=(5, 3))
+    
+    
+    ax = sns.boxplot(y=df[column_name])
+    
+    plt.title(f"Boxplot of {column_name}")
+    plt.ylabel(column_name)
+
+    
+    col_median = df[column_name].median()
+    
+    
+    plt.annotate(f'Median: {col_median:.2f}', 
+                xy=(0, col_median),  
+                xytext=(0.3, col_median),  
+                arrowprops=dict(facecolor='black', shrink=0.05, width=1),
+                fontsize=8)
+    
+    
+    plt.tight_layout()
+    plt.show()
+
+plot_boxplot(df, "tenure")
