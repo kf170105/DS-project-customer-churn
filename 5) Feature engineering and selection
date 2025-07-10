@@ -1,0 +1,17 @@
+encoders={}
+
+for column in object_columns:
+    label_encoder=LabelEncoder()
+    df[column]=label_encoder.fit_transform(df[column])
+    encoders[column]=label_encoder
+
+with open("encoders.pkl","wb") as f:
+    pickle.dump(encoders,f)
+
+encoders
+
+
+#SMOTE TECHNIQUE SYNTHETIC MINORITY OVERSAMPLING TECHNIQUE
+smote=SMOTE(random_state=42)
+X_train_smote,y_train_smote=smote.fit_resample(X_train,y_train)
+print(y_train_smote.shape)
