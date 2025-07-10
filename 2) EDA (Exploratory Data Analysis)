@@ -1,0 +1,5 @@
+df.shape
+df.head()  
+df.info()
+print(df["gender"].unique())
+df.describe()
