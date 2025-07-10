@@ -1,0 +1,4 @@
+df=df.drop(columns=["customerID"])
+df.columns
+
+df["TotalCharges"]=df["TotalCharges"].replace({" ":"0"})
