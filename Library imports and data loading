@@ -13,3 +13,4 @@ import pickle
 
 df = pd.read_csv('C:/Users/He wKai Feng/Desktop/WA_Fn-UseC_-Telco-Customer-Churn.csv')
 df
+
