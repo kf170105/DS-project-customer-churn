@@ -1,14 +1,17 @@
 encoders={}
 
+#CONVERT CATEGORICAL VARIABLES TO NUMERICAL VARIABLES
 for column in object_columns:
     label_encoder=LabelEncoder()
     df[column]=label_encoder.fit_transform(df[column])
     encoders[column]=label_encoder
 
+# SAVE ENCODERS TO FILE FOR FUTURE USE
 with open("encoders.pkl","wb") as f:
     pickle.dump(encoders,f)
 
 encoders
+
 
 
 #SMOTE TECHNIQUE SYNTHETIC MINORITY OVERSAMPLING TECHNIQUE
