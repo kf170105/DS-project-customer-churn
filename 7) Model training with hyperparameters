@@ -1,0 +1,27 @@
+#TRAINING WITH DEFAULT HYPERPARAMETERS
+
+#dictionary for models
+models={"Decision Tree":DecisionTreeClassifier(),
+        "Random Forest":RandomForestClassifier(),
+        "XGBoost":XGBClassifier()}
+
+
+
+
+
+#dictionary to store cross validation results
+cv_scores={}
+
+#perform 5-fold cross validation for each model
+for model_name, model in models.items():
+    print(f"Training{model_name} with default parameters.")
+    scores=cross_val_score(model,X_train_smote,y_train_smote, cv=5,scoring="accuracy")
+    # Split training data into 5 parts
+    # Train on 4 parts, test on 1 part
+    # Repeat 5 times with different test part
+    # Get 5 accuracy scores for each model
+    cv_scores[model_name]=scores
+    print(f"{model_name} cross validation accuracy:{np.mean(scores):.2f}")
+    print("-"*70)
+
+cv_scores
