@@ -1,0 +1,10 @@
+#RANDOM FOREST MODEL GIVES THE HIGHEST ACCURACY COMPARED TO OTHER MODELS WITH DEFAULT PARAMETERS
+rfc=RandomForestClassifier(random_state=42)
+model.fit(X_train_smote,y_train_smote)
+
+
+#MODEL EVALUATION
+y_test_pred=model.predict(X_test)
+print("Accuracy score:\n",accuracy_score(y_test,y_test_pred))
+print("Confusion Matrix:\n",confusion_matrix(y_test,y_test_pred))
+print("Classification Report:\n",classification_report(y_test,y_test_pred))
