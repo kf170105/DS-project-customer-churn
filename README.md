@@ -210,6 +210,33 @@ print(f"Accuracy: {accuracy_score(y_test, predictions):.3f}")
 print(f"MAE: {mean_absolute_error(y_test, predictions):.3f}")
 print(f"R²: {r2_score(y_test, predictions):.3f}")
 
+# You need to test multiple models and compare:
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import SVC
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
+
+models = {
+    'Random Forest': RandomForestClassifier(),
+    'SVM': SVC(),
+    'Logistic Regression': LogisticRegression(),
+    'Decision Tree': DecisionTreeClassifier()
+}
+
+# Train and evaluate each model
+results = {}
+for name, model in models.items():
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+    
+    results[name] = {
+        'accuracy': accuracy_score(y_test, y_pred),
+        'f1_weighted': f1_score(y_test, y_pred, average='weighted'),
+        'f1_class_1': f1_score(y_test, y_pred, average=None)[1],  # Class 1 F1
+        'precision_class_1': precision_score(y_test, y_pred, average=None)[1],
+        'recall_class_1': recall_score(y_test, y_pred, average=None)[1]
+    }
+    
 # Quick feature selection by correlation
 high_corr = df.corr()['target'].abs().sort_values(ascending=False)
 
